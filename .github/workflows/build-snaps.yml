@@ -64,3 +64,12 @@ jobs:
           name: ${{ matrix.snap.snap_name }}-snap
           path: ${{ steps.build.outputs.snap }}
           if-no-files-found: error
+
+      - name: Upload Piper voice components
+        if: success() && matrix.snap.snap_name == 'speech-provider-piper' && github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: speech-provider-piper-voices
+          path: ${{ matrix.snap.snap_dir }}/*.comp
+          if-no-files-found: error
+          compression-level: 0
