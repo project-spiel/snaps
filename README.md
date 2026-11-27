@@ -16,6 +16,12 @@ make SNAPS="speech-provider-piper orca-spiel" \
   build install connect speak
 ```
 
+CI uploads the Piper snap as the `speech-provider-piper-snap` artifact and its
+voice components as the separate `speech-provider-piper-voices` artifact. The
+voice artifact is uploaded on pushes to `main` and on manually dispatched
+runs; pull requests still build the components but do not upload the large
+voice bundle.
+
 ## Managing speech providers and voices
 
 View installed voices and speech providers:
